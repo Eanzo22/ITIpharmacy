@@ -1,115 +1,100 @@
-@extends('admin.layouts.master');
-@section('content')
- <!-- Animated -->
-            <div class="animated fadeIn">
-                <!-- Orders -->
-                <div class="orders">
-                    <div>
-                        <div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">Orders </h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="serial">#</th>
-                                                    <th class="avatar">Avatar</th>
-                                                    <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Product</th>
-                                                    <th>Quantity</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td class="avatar">
-                                                        <div class="round-img">
-                                                            <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
-                                                        </div>
-                                                    </td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="name">Louis Stanley</span> </td>
-                                                    <td> <span class="product">iMax</span> </td>
-                                                    <td><span class="count">231</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">2.</td>
-                                                    <td class="avatar">
-                                                        <div class="round-img">
-                                                            <a href="#"><img class="rounded-circle" src="images/avatar/2.jpg" alt=""></a>
-                                                        </div>
-                                                    </td>
-                                                    <td> #5468 </td>
-                                                    <td>  <span class="name">Gregory Dixon</span> </td>
-                                                    <td> <span class="product">iPad</span> </td>
-                                                    <td><span class="count">250</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">3.</td>
-                                                    <td class="avatar">
-                                                        <div class="round-img">
-                                                            <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
-                                                        </div>
-                                                    </td>
-                                                    <td> #5467 </td>
-                                                    <td>  <span class="name">Catherine Dixon</span> </td>
-                                                    <td> <span class="product">SSD</span> </td>
-                                                    <td><span class="count">250</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">4.</td>
-                                                    <td class="avatar">
-                                                        <div class="round-img">
-                                                            <a href="#"><img class="rounded-circle" src="images/avatar/4.jpg" alt=""></a>
-                                                        </div>
-                                                    </td>
-                                                    <td> #5466 </td>
-                                                    <td>  <span class="name">Mary Silva</span> </td>
-                                                    <td> <span class="product">Magic Mouse</span> </td>
-                                                    <td><span class="count">250</span></td>
-                                                    <td>
-                                                        <span class="badge badge-pending">Pending</span>
-                                                    </td>
-                                                </tr>
-                                                <tr class=" pb-0">
-                                                    <td class="serial">5.</td>
-                                                    <td class="avatar pb-0">
-                                                        <div class="round-img">
-                                                            <a href="#"><img class="rounded-circle" src="images/avatar/6.jpg" alt=""></a>
-                                                        </div>
-                                                    </td>
-                                                    <td> #5465 </td>
-                                                    <td>  <span class="name">Johnny Stephens</span> </td>
-                                                    <td> <span class="product">Monitor</span> </td>
-                                                    <td><span class="count">250</span></td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Complete</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> <!-- /.table-stats -->
-                                </div>
-                            </div> <!-- /.card -->
-                        </div>
+@extends("admin.layout.master") ;
+@section("title")
+<h1> information of <strong>{{$user["name"]}}</strong></h1>
+@endsection
 
-
-                    </div>
-                </div>
-            </div>
+@section("content")
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">information </strong>
         </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="col">id</th>
+                        <td scope="row">{{$user["id"]}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">name</th>
+                        <td scope="row">{{$user["name"]}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">email</th>
+                        <td scope="row">{{$user["email"]}}
+                    </tr>
+                    <tr>
+                        <th scope="col">password</th>
+                        <td scope="row">{{$user["password"]}}
+                    </tr>
+                    </tr>
+                    <tr>
+                        <th scope="col">address</th>
+                        <td scope="row">{{$user["address"]}}
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <form method="post" action="{{route('users.destroy' , $user->id) }}">
+                                @csrf
+                                @method("delete")
+                                <input class="btn btn-outline-danger" type="submit" value="Delete">
+                            </form>
+                            <a href="{{ route('users.edit' ,$user['id'] ) }}" class="btn btn-outline-success">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section("content")
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">information </strong>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <th scope="col">id</th>
+                        <td scope="row">{{$user["id"]}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">name</th>
+                        <td scope="row">{{$user["name"]}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">email</th>
+                        <td scope="row">{{$user["email"]}}
+                    </tr>
+                    <tr>
+                        <th scope="col">password</th>
+                        <td scope="row">{{$user["password"]}}
+                    </tr>
+                    </tr>
+                    <tr>
+                        <th scope="col">address</th>
+                        <td scope="row">{{$user["address"]}}
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <form method="post" action="{{route('users.destroy' , $user->id) }}">
+                                @csrf
+                                @method("delete")
+                                <input class="btn btn-outline-danger" type="submit" value="Delete">
+                            </form>
+                            <a href="{{ route('users.edit' ,$user['id'] ) }}" class="btn btn-outline-success">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection

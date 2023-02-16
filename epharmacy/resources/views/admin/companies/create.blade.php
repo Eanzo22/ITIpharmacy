@@ -1,28 +1,61 @@
-@extends('admin.layouts.master');
+@extends("admin.layout.master")
+@section("title" , "Create companys")
 
-@section('content');
-                    <form>
-                        <div class="card">
-                            <div class="card-header"><strong>Company</strong><small> Form</small></div>
-                            <div class="card-body card-block">
-                                <div class="form-group"><label for="companyname" class=" form-control-label">Company name</label><input type="text"  name="companyname"id="companyname" placeholder="Enter your company name" class="form-control"></div>
-                                <div class="form-group"><label for="street" class=" form-control-label">Street</label><input type="text" id="street" placeholder="Enter street name" class="form-control"></div>
-                                <div class="row form-group">
-                                    <div class="col-8">
-                                        <div class="form-group"><label for="city" class=" form-control-label">City</label><input type="text" id="city" placeholder="Enter your city" class="form-control"></div>
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" id="postal-code" placeholder="Postal Code" class="form-control"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group"><label for="country" class=" form-control-label">Country</label><input type="text" id="country" placeholder="Country name" class="form-control"></div>
-                                <div class="form-group">
-                                    <div style="text-align:center ">
-                                        <button type="submit" class="btn btn-dark mb-2">submit</button>
-                                        <button type="reset" class="btn btn-dark mb-2">reset</button>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                    </form>
-    @endsection
+@section("content")
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <strong>create company Form</strong>
+        </div>
+        <!-- alert if success -->
+        @if(Session::has("msg"))
+        <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+            <span class="badge badge-pill badge-success">Success</span>
+            {{Session::get("msg")}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif
+        @if($errors->all())
+        <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+            <span class="badge badge-pill badge-danger">Fail</span>
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif()
+        <div class="card-body card-block">
+            <form action="{{route('companies.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                @csrf
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">id</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="id" placeholder="id" class="form-control @error('id') is-invalid @enderror " value="{{old('id')}} ">
+                        @error("id")
+                        <small class="form-text text-muted"> {{$message}}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">name</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder=" name" class="form-control" value="{{old('name')}} "> <small class="form-text text-muted">Please enter your name </small></div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm" name="add">
+                        <i class="fa fa-dot-circle-o"></i> Add
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm">
+                        <i class="fa fa-ban"></i> Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@endsection

@@ -37,22 +37,20 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form method="POST" >
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        @method("POST")
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" class="form-control" placeholder="User Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input name="name" type="text" class="form-control" placeholder="User Name">
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
                             <textarea name="address" id="address" rows="5" placeholder="Enter your exact address" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" class="form-control" placeholder="Enter a valid phone number">
+                            <label>Email address</label>
+                            <input name="email" type="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
@@ -65,7 +63,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                         <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="{{ route('usersController.login') }}"> Sign in</a></p>
+                            {{-- <p>Already have account ? <a href="{{ route('userController.create') }}"> Sign in</a></p> --}}
                         </div>
                     </form>
                 </div>

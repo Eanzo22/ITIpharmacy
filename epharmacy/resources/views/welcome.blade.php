@@ -118,9 +118,9 @@
                                 <button class="btn bg-primary" type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
-                            <a href="login" style="color:blue"><b>Login</b> |</a>
+                            <a href="login.blade.php" style="color:blue"><b>Login</b> |</a>
 
-                            <a href="register" style="color:rgb(17, 165, 223)"><b>Register</b></a>
+                            <a href="register.blade.php" style="color:rgb(17, 165, 223)"><b>Register</b></a>
                     </div>
                     </div>
 

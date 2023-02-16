@@ -1,11 +1,11 @@
 @extends("admin.layout.master")
-@section("title" , "Edit company")
+@section("title" , "Edit drug")
 
 @section("content")
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <strong>edit company {{$company->name}}</strong>
+            <strong>edit drug {{$drug->name}}</strong>
         </div>
         <!-- alert if success -->
         @if(Session::has("msg"))
@@ -31,12 +31,12 @@
         </div>
         @endif()
         <div class="card-body card-block">
-            <form action="{{route('companies.update' , $company->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <form action="{{route('drugs.update' , $drug->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 @method('put')
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">id</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="id" placeholder="id" class="form-control @error('id') is-invalid @enderror " value="{{$company->id}} ">
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="id" placeholder="id" class="form-control @error('id') is-invalid @enderror " value="{{$drug->id}} ">
                         @error("id")
                         <small class="form-text text-muted"> {{$message}}</small>
                         @enderror
@@ -44,14 +44,33 @@
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">name</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder=" name" class="form-control" value="{{$company->name}} ">
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder=" name" class="form-control" value="{{$drug->name}} ">
                         @error("name")
                         <small class="form-text text-muted">{{$message}} </small>
                         @enderror()
                     </div>
                 </div>
 
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="email-input" class=" form-control-label">quantity</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="quantity" name="quantity" placeholder="quantity" class="form-control" value="{{$drug->quantity}} "> <small class="help-block form-text">Please enter your quantity</small></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="email-input" class=" form-control-label">price</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="quantity" name="price" placeholder="price" class="form-control" value="{{$drug->price}} "> <small class="help-block form-text">Please enter your price</small></div>
+                </div>
 
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="select" class=" form-control-label">company</label></div>
+                    <div class="col-12 col-md-9">
+                        <select name="company" id="select" class="form-control">
+                            @foreach($companies as $company)
+                            <option value="{{$company->id}}" @if ( $company->id == $drug->company_id ) selected @endif>{{$company->name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm" name="edit">
                         <i class="fa fa-dot-circle-o"></i> edit

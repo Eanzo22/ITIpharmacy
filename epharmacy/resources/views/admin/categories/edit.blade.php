@@ -1,11 +1,11 @@
 @extends("admin.layout.master")
-@section("title" , "Edit company")
+@section("title" , "Edit category")
 
 @section("content")
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <strong>edit company {{$company->name}}</strong>
+            <strong>edit category {{$category->name}}</strong>
         </div>
         <!-- alert if success -->
         @if(Session::has("msg"))
@@ -31,12 +31,12 @@
         </div>
         @endif()
         <div class="card-body card-block">
-            <form action="{{route('companies.update' , $company->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <form action="{{route('categories.update' , $category->id) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 @method('put')
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">id</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="id" placeholder="id" class="form-control @error('id') is-invalid @enderror " value="{{$company->id}} ">
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="id" placeholder="id" class="form-control @error('id') is-invalid @enderror " value="{{$category->id}} ">
                         @error("id")
                         <small class="form-text text-muted"> {{$message}}</small>
                         @enderror
@@ -44,14 +44,14 @@
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">name</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder=" name" class="form-control" value="{{$company->name}} ">
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder=" name" class="form-control" value="{{$category->name}} ">
                         @error("name")
                         <small class="form-text text-muted">{{$message}} </small>
                         @enderror()
                     </div>
                 </div>
 
-
+               
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm" name="edit">
                         <i class="fa fa-dot-circle-o"></i> edit
