@@ -1,11 +1,11 @@
 @extends("admin.layout.master")
-@section("title" , "Create companys")
+@section("title" , "Create categories")
 
 @section("content")
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
-            <strong>create company Form</strong>
+            <strong>create category Form</strong>
         </div>
         <!-- alert if success -->
         @if(Session::has("msg"))
@@ -31,7 +31,7 @@
         </div>
         @endif()
         <div class="card-body card-block">
-            <form action="{{route('companies.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <form action="{{route('categories.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">id</label></div>

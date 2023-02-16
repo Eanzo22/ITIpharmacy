@@ -1,6 +1,6 @@
 @extends("admin.layout.master") ;
 @section("title")
-<h1> information of <strong>{{$order["name"]}}</strong></h1>
+<h1> information of <strong>{{$user["name"]}}</strong></h1>
 @endsection
 
 @section("content")
@@ -14,34 +14,34 @@
                 <tbody>
                     <tr>
                         <th scope="col">id</th>
-                        <td scope="row">{{$order["id"]}}</td>
+                        <td scope="row">{{$user["id"]}}</td>
                     </tr>
                     <tr>
-                        <th scope="col">user name</th>
-                        <td scope="row">
-                            <a href="{{route('users.show' , $order->user->id )}}">{{$order->user->name}} </a>
-                        </td>
+                        <th scope="col">name</th>
+                        <td scope="row">{{$user["name"]}}</td>
                     </tr>
                     <tr>
-                        <th scope="col">drug name</th>
-                        <td scope="row"> <a href="{{route('drugs.show' , $order->drug->id)}}"> {{$order->drug->name}} </a></td>
+                        <th scope="col">email</th>
+                        <td scope="row">{{$user["email"]}}
                     </tr>
                     <tr>
-                        <th scope="col">quantity</th>
-                        <td scope="row">{{$order["quantity"]}}</td>
+                        <th scope="col">password</th>
+                        <td scope="row">{{$user["password"]}}
+                    </tr>
                     </tr>
                     <tr>
-                        <th scope="col">price</th>
-                        <td scope="row">{{$order["price"]}}</td>
+                        <th scope="col">address</th>
+                        <td scope="row">{{$user["address"]}}
+                    </tr>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <form method="post" action="{{route('orders.destroy' , $order->id) }}">
+                            <form method="post" action="{{route('users.destroy' , $user->id) }}">
                                 @csrf
                                 @method("delete")
                                 <input class="btn btn-outline-danger" type="submit" value="Delete">
                             </form>
-                            <a href="{{ route('orders.edit' ,$order['id'] ) }}" class="btn btn-outline-success">Edit</a>
+                            <a href="{{ route('users.edit' ,$user['id'] ) }}" class="btn btn-outline-success">Edit</a>
                         </td>
                     </tr>
                 </tbody>
