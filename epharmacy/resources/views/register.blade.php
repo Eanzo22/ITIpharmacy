@@ -1,9 +1,10 @@
-
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang=""> <!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +28,7 @@
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
+
 <body class="bg-dark">
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
@@ -37,9 +39,21 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form method="POST" action="{{ route('register') }}">
+                    @if($errors->all())
+                    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                        <span class="badge badge-pill badge-danger">Fail</span>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    @endif()
+                    <form method="POST" action="{{ route('handleRegister') }}">
                         @csrf
-                        @method("POST")
                         <div class="form-group">
                             <label>Name</label>
                             <input name="name" type="text" class="form-control" placeholder="User Name">
@@ -54,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input name="password" type="password" class="form-control" placeholder="Password">
                         </div>
                         <div class="checkbox">
                             <label>
@@ -78,4 +92,5 @@
     <script src="{{ URL::asset('assets/js/main.js') }}"></script>
 
 </body>
+
 </html>

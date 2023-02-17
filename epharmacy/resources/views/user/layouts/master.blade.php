@@ -76,26 +76,7 @@
 
 <body>
     <!-- Left Panel -->
-    <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="welcome.blade.php"><i class="menu-icon fa fa-laptop"></i>Home </a>
-                    </li>
-                   <li class="menu-item-has-children active dropdown show">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">  <i class="fa fa-plus-square"></i> Catogeries</a>
-                        <ul class="sub-menu children active dropdown-menu show"><li class="subtitle">  <i class="fa fa-plus-square"></i> Catogeries</li>
-                            <li><i class="fa fa-medkit"></i><a href="ui-buttons.html">medicine1</a></li>
-                            <li><i class="fa fa-medkit"></i><a href="ui-badges.html">medicineType1</a></li>
-                            <li><i class="fa fa-medkit"></i><a href="ui-tabs.html">medicineType1</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside>
+    
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
@@ -196,7 +177,7 @@
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="{{route('homepage') }}"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{{route('home') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
