@@ -19,8 +19,12 @@ class welcomePageController extends Controller
     public function create($id)
     {
         $drug = drug::findorfail($id);
-        $user = Auth::user() ; 
-        return view("user.orders.create" , ["drug"=>$drug  , "user" =>$user] );
+        if(Auth::check()) {
+            $user = Auth::user() ; 
+            return view("user.orders.create" , ["drug"=>$drug  , "user" =>$user] );
+        }
+        return redirect(route('home'))->with("msg" , "please login first " ) ; 
+        
     }
 
     /**
